@@ -28,4 +28,8 @@ console.log('firstSchema', Joi.validate('  a  ', firstSchema));
 ## Reference
 
 - [Celebrate](https://github.com/continuationlabs/celebrate)
-  - Express 프레임워크 기반으로는 Celebrate가 그나마 다운로드 수가 가장 많다. (*1,642 downloads in the last week*)
+  - Express 프레임워크 기반으로는 Celebrate가 그나마 다운로드 수가 가장 많다.
+  - NPM Stats (2017.10.18)  
+    *292 downloads in the last day*  
+    *1,676 downloads in the last week*  
+    *7,883 downloads in the last month*
