@@ -25,6 +25,34 @@ console.log('firstSchema', Joi.validate('  a  ', firstSchema));
 // firstSchema { error: null, value: 'a' }
 ```
 
+#### object의 keys 초기화
+
+Object 키를 정의하는 경우 해당 키가 존재하면 재정의하고, 없으면 추가된다.  
+전체 키를 초기화하고 싶은 경우는 아래와 같이 사용 할 수 있다.
+
+```javascript
+const schema = Joi.object({
+  foo: Joi.string().valid('poo'),
+  bar: Joi.number().min(2),
+});
+
+// Original schema error! child "foo" fails because ["foo" must be one of [poo]
+Joi.validate({ foo: 'FOO', bar: 1 }, schema, (error, value) => {
+  if (error) {
+    console.log('Original schema error!', error.message);
+  }
+});
+
+const cleanKeys = schema.keys();
+
+// No error output
+Joi.validate({ foo: 'FOO', bar: 1 }, cleanKeys, (error, value) => {
+  if (error) {
+    console.log('Clean schema error!', error.message);
+  }
+});
+```
+
 ## Reference
 
 - [Celebrate](https://github.com/continuationlabs/celebrate)
