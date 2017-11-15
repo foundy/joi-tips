@@ -4,7 +4,10 @@ Object validator인 Joi를 정리해보자.
 
 ## Tips
 
-#### reach를 통해 하위 스키마 가져오기
+* [reach를 통해 하위 스키마 가져오기](#reach를-통해-하위-스키마-가져오기)
+* [object의 keys 초기화](#object의-keys-초기화)
+
+### reach를 통해 하위 스키마 가져오기
 
 포괄적인 스키마를 구성한 후 reach를 통해 필요한 하위 스키마만 가져와서 사용하기 편하다.  
 그리고 reach를 통해 가져온 하위 스키마 구성을 변경해도 기존 스키마는 그대로 유지된다.
@@ -25,7 +28,7 @@ console.log('firstSchema', Joi.validate('  a  ', firstSchema));
 // firstSchema { error: null, value: 'a' }
 ```
 
-#### object의 keys 초기화
+### object의 keys 초기화
 
 Object 키를 정의하는 경우 해당 키가 존재하면 재정의하고, 없으면 추가된다.  
 전체 키를 초기화하고 싶은 경우는 아래와 같이 사용 할 수 있다.
@@ -52,6 +55,19 @@ Joi.validate({ foo: 'FOO', bar: 1 }, cleanKeys, (error, value) => {
   }
 });
 ```
+
+## Notes
+
+* [.label() 성능 이슈](#.label()-성능-이슈)
+
+### .label() 성능 이슈
+
+> [any.label() significantly slows validation of large arrays](https://github.com/hapijs/joi/issues/874)
+
+`.label`을 사용할 경우 성능 이슈가 있으며, 완전히 개선되지는 않은 것으로 보인다.  
+`.label` 대신 `.meta`가 성능면에서 유리하다는 내용도 있다.
+
+
 
 ## Reference
 
